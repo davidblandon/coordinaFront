@@ -1,0 +1,22 @@
+export const styles = {
+  container: "min-h-screen bg-white",
+  header: "border-b border-gray-200 bg-white sticky top-0 z-20",
+  headerContent: "max-w-7xl mx-auto px-6 py-6",
+  headerTop: "flex items-center justify-between mb-6",
+  backButton: "flex items-center gap-2 text-gray-600 hover:text-black transition-colors",
+  title: "text-3xl font-light tracking-tight text-black",
+  weekNavigation: "flex items-center justify-between",
+  navButton: "p-2 hover:bg-gray-100 rounded-lg transition-colors",
+  weekDisplay: "text-lg font-light text-gray-700",
+  mainContent: "max-w-7xl mx-auto px-6 py-8",
+  calendarGrid: "grid grid-cols-8 gap-px bg-gray-200 border border-gray-200",
+  timeColumn: "bg-white",
+  timeCell: "h-16 flex items-start justify-end pr-3 pt-2 text-xs text-gray-500 font-light border-b border-gray-100",
+  dayColumn: "bg-white",
+  dayHeader: "h-20 flex flex-col items-center justify-center border-b border-gray-200 bg-gray-50",
+  dayName: "text-sm font-light text-gray-600 uppercase tracking-wide",
+  dayNumber: "text-2xl font-light text-black mt-1",
+  dayNumberToday: "text-2xl font-normal text-white mt-1 w-10 h-10 flex items-center justify-center bg-black rounded-full",
+  timeSlot: "h-16 border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer relative",
+  todayIndicator: "absolute left-0 top-0 bottom-0 w-1 bg-black"
+};

@@ -1,0 +1,23 @@
+export const styles = {
+  overlay: "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4",
+  modal: "bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden",
+  header: "px-8 py-6 border-b border-gray-200",
+  headerTop: "flex items-center justify-between mb-4",
+  title: "text-2xl font-light text-black",
+  closeButton: "text-gray-400 hover:text-black transition-colors",
+  stepIndicator: "flex gap-2",
+  step: "h-1 flex-1 bg-gray-200 rounded-full transition-all duration-300",
+  stepActive: "h-1 flex-1 bg-black rounded-full transition-all duration-300",
+  body: "px-8 py-6 overflow-y-auto max-h-[60vh]",
+  formGroup: "mb-6",
+  label: "block text-sm font-light text-gray-700 mb-2",
+  input: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors",
+  textarea: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-black transition-colors resize-none",
+  participantInput: "flex gap-2 mb-3",
+  participantTag: "inline-flex items-center gap-2 px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm mb-2 mr-2",
+  removeButton: "text-gray-500 hover:text-black transition-colors",
+  footer: "px-8 py-6 border-t border-gray-200 flex justify-between",
+  buttonSecondary: "px-6 py-3 text-gray-600 hover:text-black transition-colors font-light",
+  buttonPrimary: "px-8 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors font-light",
+  dateTimeInfo: "text-sm text-gray-600 font-light mb-6 p-4 bg-gray-50 rounded-lg"
+};
