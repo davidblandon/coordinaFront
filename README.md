@@ -181,15 +181,6 @@ This project is private and intended for educational purposes.
 - Utilize proper prop-types or TypeScript for type safety
 - Write semantic and accessible HTML
 
-## 🐛 Known Issues
-
-Check the issues tab for known bugs and feature requests.
-
-## 📞 Support
-
-For questions and support, please open an issue in the repository.
-
----
 
 Built with ❤️ using React and Tailwind CSS
 
