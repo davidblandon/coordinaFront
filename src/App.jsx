@@ -1,14 +1,21 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import Calendar from "./pages/Calendar";
+import React, { useState } from 'react';
+import { UserProvider } from './context/UserContext';
+import Index from './pages/Index';
+import Calendar from './pages/Calendar';
 
-export default function App() {
+function App() {
+  const [currentPage, setCurrentPage] = useState('index'); // 'index' ou 'calendar'
+
+  const navigateTo = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/calendar" element={<Calendar />} />
-      </Routes>
-    </BrowserRouter>
+    <UserProvider>
+      {currentPage === 'index' && <Index onNavigate={navigateTo} />}
+      {currentPage === 'calendar' && <Calendar onNavigate={navigateTo} />}
+    </UserProvider>
   );
 }
+
+export default App;

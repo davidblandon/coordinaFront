@@ -17,6 +17,11 @@ export const styles = {
   dayName: "text-sm font-light text-gray-600 uppercase tracking-wide",
   dayNumber: "text-2xl font-light text-black mt-1",
   dayNumberToday: "text-2xl font-normal text-white mt-1 w-10 h-10 flex items-center justify-center bg-black rounded-full",
-  timeSlot: "h-16 border-b border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer relative",
-  todayIndicator: "absolute left-0 top-0 bottom-0 w-1 bg-black"
+  timeSlot: "h-16 border-b border-gray-100 relative",
+  timeSlotAvailable: "h-16 border-b border-gray-100 relative bg-green-50 hover:bg-green-100 transition-colors cursor-pointer",
+  timeSlotUnavailable: "h-16 border-b border-gray-100 relative bg-gray-100 cursor-not-allowed",
+  todayIndicator: "absolute left-0 top-0 bottom-0 w-1 bg-black",
+  appointment: "absolute inset-0 bg-black text-white p-2 overflow-hidden z-10",
+  appointmentTitle: "font-light text-sm truncate",
+  appointmentTime: "text-xs opacity-75 mt-1"
 };

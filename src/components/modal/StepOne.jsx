@@ -1,49 +1,38 @@
 import React, { useState } from 'react';
 import { X, Plus } from 'lucide-react';
 import { styles } from '../../styles/modalStyles';
+import { useUser } from '../../context/UserContext';
 
-export const StepOne = ({ formData, onChange, dateInfo, initialHour }) => {
-  const [participantInput, setParticipantInput] = useState('');
+export const StepOne = ({ formData, onChange }) => {
+  const { users, currentUser } = useUser();
+  const [participantSelect, setParticipantSelect] = useState('');
+
+  // Filtrer les utilisateurs (exclure l'utilisateur actuel)
+  const availableUsers = users.filter(u => u.id !== currentUser?.id);
 
   const handleAddParticipant = () => {
-    if (participantInput.trim()) {
+    if (participantSelect && !formData.participants.includes(participantSelect)) {
+      const selectedUser = users.find(u => u.id === participantSelect);
       onChange({
         ...formData,
-        participants: [...formData.participants, participantInput.trim()]
+        participants: [...formData.participants, participantSelect],
+        participantNames: [...formData.participantNames, selectedUser?.name || '']
       });
-      setParticipantInput('');
+      setParticipantSelect('');
     }
   };
 
   const handleRemoveParticipant = (index) => {
     onChange({
       ...formData,
-      participants: formData.participants.filter((_, i) => i !== index)
+      participants: formData.participants.filter((_, i) => i !== index),
+      participantNames: formData.participantNames.filter((_, i) => i !== index)
     });
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      handleAddParticipant();
-    }
-  };
-
-  // Générer les options d'heures (00-23)
-  const hours = Array.from({ length: 24 }, (_, i) => 
-    i.toString().padStart(2, '0')
-  );
-  
-  // Générer les options de minutes (00-59)
-  const minutes = Array.from({ length: 60 }, (_, i) => 
-    i.toString().padStart(2, '0')
-  );
-
   // Options de durée
   const durations = [
-    { value: 15, label: '15 minutes' },
     { value: 30, label: '30 minutes' },
-    { value: 45, label: '45 minutes' },
     { value: 60, label: '1 heure' },
     { value: 90, label: '1h 30min' },
     { value: 120, label: '2 heures' },
@@ -52,83 +41,59 @@ export const StepOne = ({ formData, onChange, dateInfo, initialHour }) => {
 
   return (
     <div className={styles.body}>
-      <div className={styles.dateTimeInfo}>
-        📅 {dateInfo}
-      </div>
-
-      <div className="grid grid-cols-2 gap-4 mb-6">
-        <div className={styles.formGroup}>
-          <label className={styles.label}>Heure de début</label>
-          <div className="flex gap-2">
-            <select
-              value={formData.startHour}
-              onChange={(e) => onChange({ ...formData, startHour: e.target.value })}
-              className={styles.input}
-            >
-              {hours.map(h => (
-                <option key={h} value={h}>{h}</option>
-              ))}
-            </select>
-            <select
-              value={formData.startMinute}
-              onChange={(e) => onChange({ ...formData, startMinute: e.target.value })}
-              className={styles.input}
-            >
-              {minutes.map(m => (
-                <option key={m} value={m}>{m}</option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        <div className={styles.formGroup}>
-          <label className={styles.label}>Durée</label>
-          <select
-            value={formData.duration}
-            onChange={(e) => onChange({ ...formData, duration: parseInt(e.target.value) })}
-            className={styles.input}
-          >
-            {durations.map(d => (
-              <option key={d.value} value={d.value}>{d.label}</option>
-            ))}
-          </select>
-        </div>
+      <div className={styles.formGroup}>
+        <label className={styles.label}>Nom de la réunion *</label>
+        <input
+          type="text"
+          value={formData.title}
+          onChange={(e) => onChange({ ...formData, title: e.target.value })}
+          placeholder="ex: Réunion d'équipe, Point projet..."
+          className={styles.input}
+          required
+        />
       </div>
 
       <div className={styles.formGroup}>
-        <label className={styles.label}>Lieu du rendez-vous</label>
-        <input
-          type="text"
-          value={formData.location}
-          onChange={(e) => onChange({ ...formData, location: e.target.value })}
-          placeholder="ex: Salle de réunion A, Bureau 301, Zoom..."
+        <label className={styles.label}>Durée *</label>
+        <select
+          value={formData.duration}
+          onChange={(e) => onChange({ ...formData, duration: parseInt(e.target.value) })}
           className={styles.input}
-        />
+        >
+          {durations.map(d => (
+            <option key={d.value} value={d.value}>{d.label}</option>
+          ))}
+        </select>
       </div>
 
       <div className={styles.formGroup}>
         <label className={styles.label}>Participants</label>
         <div className={styles.participantInput}>
-          <input
-            type="text"
-            value={participantInput}
-            onChange={(e) => setParticipantInput(e.target.value)}
-            onKeyPress={handleKeyPress}
-            placeholder="Ajouter un participant"
+          <select
+            value={participantSelect}
+            onChange={(e) => setParticipantSelect(e.target.value)}
             className={styles.input}
-          />
+          >
+            <option value="">Sélectionner un participant</option>
+            {availableUsers.map(user => (
+              <option key={user.id} value={user.id}>
+                {user.name}
+              </option>
+            ))}
+          </select>
           <button
             onClick={handleAddParticipant}
             className="px-4 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+            disabled={!participantSelect}
           >
             <Plus className="w-5 h-5" />
           </button>
         </div>
         
         <div className="mt-3">
-          {formData.participants.map((participant, index) => (
+          {formData.participantNames.map((name, index) => (
             <span key={index} className={styles.participantTag}>
-              {participant}
+              {name}
               <button
                 onClick={() => handleRemoveParticipant(index)}
                 className={styles.removeButton}

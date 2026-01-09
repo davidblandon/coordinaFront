@@ -11,8 +11,9 @@ export const ModalHeader = ({ step, onClose }) => (
       </button>
     </div>
     <div className={styles.stepIndicator}>
-      <div className={step === 1 ? styles.stepActive : styles.step} />
-      <div className={step === 2 ? styles.stepActive : styles.step} />
+      <div className={step >= 1 ? styles.stepActive : styles.step} />
+      <div className={step >= 2 ? styles.stepActive : styles.step} />
+      <div className={step >= 3 ? styles.stepActive : styles.step} />
     </div>
   </div>
 );
