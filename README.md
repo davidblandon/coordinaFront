@@ -195,4 +195,4 @@ Built with ❤️ using React and Tailwind CSS
 
 ### Best Practices
 
-For seeing an consistent Backend for this app visit [text](https://github.com/jmespitiag/Coordina_Backend.git)
+For seeing an consistent Backend for this app visit [Coordina_Backend](https://github.com/jmespitiag/Coordina_Backend.git)
