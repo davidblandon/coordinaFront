@@ -173,6 +173,7 @@ This project is private and intended for educational purposes.
 - **Business logic** is separated into handlers and services
 - **Context API** manages global state
 
+
 ### Best Practices
 
 - Use functional components with hooks
@@ -182,8 +183,10 @@ This project is private and intended for educational purposes.
 - Write semantic and accessible HTML
 
 
-Built with ❤️ using React and Tailwind CSS
 
-### Best Practices
+### Backend
 
 For seeing an consistent Backend for this app visit [Coordina_Backend](https://github.com/jmespitiag/Coordina_Backend.git)
+
+
+Built with ❤️ using React and Tailwind CSS
